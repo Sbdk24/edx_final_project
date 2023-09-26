@@ -22,3 +22,4 @@
  store it into a server or just using lists and manage everything as dictionaries.
 
  Here's is an image of where was creataed classes, and the threes.
+ 
