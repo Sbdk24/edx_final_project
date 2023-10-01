@@ -1,14 +1,14 @@
 class Task:
     """
     For this program, we need to use the next variables:
-    * task_name: The name of the tasks prompted
-    * dead_line: A date data type which will be helpful to organize data in program
-    * priority: The other sorting variable in this program 
-    gotta change this
+
+    * task_name: A string variale to store the name of the variable
+    * deadline: A date data type to set a deadline for a given task
+    * priority: A string variable to set the importance of given taks
     """
-    def __init__(self, task_name, dead_line, priority):
+    def __init__(self, task_name, deadline, priority):
         self.task_name = task_name
-        self.dead_line = dead_line
+        self.deadline = deadline
         self.priority = priority
 
     @property
@@ -23,12 +23,24 @@ class Task:
         self._task_name = task_name
 
     @property
+    def deadline(self):
+        return self._deadline
+
+    @deadline.setter
+    def deadline(self, deadline):
+        self._deadline = deadline
+
+    @property
     def priority(self):
         return self._priority
     
     @priority.setter
     def priority(self, priority):
+        # If data type is different of str, exit error
         if isinstance(priority, str):
             raise TypeError("Wrong data type prompted, use instead str type attributes")
+        
         self._priority = priority
+
+    
      
