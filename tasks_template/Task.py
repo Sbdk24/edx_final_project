@@ -1,6 +1,13 @@
 from enum import Enum
 from datetime import datetime
 from sys import exit
+"""
+    For this program, we need to use the next variables:
+
+    * task_name: A string variale to store the name of the variable
+    * deadline: A date data type to set a deadline for a given task
+    * priority: A string variable to set the importance of given taks
+"""
 
 class Priority(Enum):
     URGENT = 1
@@ -9,13 +16,6 @@ class Priority(Enum):
     LOW = 4
 
 class Task:
-    """
-    For this program, we need to use the next variables:
-
-    * task_name: A string variale to store the name of the variable
-    * deadline: A date data type to set a deadline for a given task
-    * priority: A string variable to set the importance of given taks
-    """
     def __init__(self, id: int, name: str, priority: Priority, deadline: datetime):
         self.id = id
         self.name = name
@@ -62,15 +62,20 @@ class Task:
         
         exit("Priority input is not a correct value")
         
-
+    """ Deadline gettters and setters"""
     @property
     def deadline(self):
         return self._deadline
 
     @deadline.setter
     def deadline(self, deadline):
+        if isinstance(deadline, datetime):
+            raise TypeError("Incorrect data type for deadline")
+        
         self._deadline = deadline
 
+    def __repr__(self):
+        return f"Task(id= {self.id}, name= {self.name}, priority={self.priority.name}, deadline= {str(self.deadline)})"
 
 
 
