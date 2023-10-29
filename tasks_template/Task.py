@@ -1,3 +1,13 @@
+from enum import Enum
+from datetime import datetime
+from sys import exit
+
+class Priority(Enum):
+    URGENT = 1
+    HIGH = 2
+    MEDIUM = 3
+    LOW = 4
+
 class Task:
     """
     For this program, we need to use the next variables:
@@ -6,21 +16,52 @@ class Task:
     * deadline: A date data type to set a deadline for a given task
     * priority: A string variable to set the importance of given taks
     """
-    def __init__(self, task_name, deadline, priority):
-        self.task_name = task_name
-        self.deadline = deadline
+    def __init__(self, id: int, name: str, priority: Priority, deadline: datetime):
+        self.id = id
+        self.name = name
         self.priority = priority
+        self.deadline = deadline
 
+
+    """ Id attribute getters and setters"""
     @property
-    def task_name(self):
-        return self._task_name
-    
-    @task_name.setter
-    def task_name(self, task_name):
+    def id(self):
+        return self._id
+   
+    @id.setter
+    def id(self, id):
         # If data type is different of str, exit error
-        if isinstance(task_name, str):
+        if isinstance(id, int):
+            raise TypeError("Wrong data type prompted, use instead int type attribute")
+
+
+    """ Name attribute getters and setters """
+    @property
+    def name(self):
+        return self._name
+    
+    @name.setter
+    def task_name(self, name):
+        # If data type is different of str, exit error
+        if isinstance(name, str):
             raise TypeError("Wrong data type prompted, use instead str type attributes")
-        self._task_name = task_name
+        
+        self._name = name
+    
+    
+    """ Priority attribute getters and setters """
+    @property
+    def priority(self):
+        return self._priority
+    
+    @priority.setter
+    def priority(self, priority):
+        # If there isn't a match with the correct priorities, exit
+        if priority  == Priority.URGENT or priority == Priority.HIGH or priority == Priority.MEDIUM or Priority == Priority.LOW:
+            self._priority = priority
+        
+        exit("Priority input is not a correct value")
+        
 
     @property
     def deadline(self):
@@ -30,17 +71,7 @@ class Task:
     def deadline(self, deadline):
         self._deadline = deadline
 
-    @property
-    def priority(self):
-        return self._priority
-    
-    @priority.setter
-    def priority(self, priority):
-        # If data type is different of str, exit error
-        if isinstance(priority, str):
-            raise TypeError("Wrong data type prompted, use instead str type attributes")
-        
-        self._priority = priority
 
-    
+
+
      
